@@ -8,10 +8,10 @@
     { name: "clubs", symbol: "♣", color: "black" },
   ];
   const SUIT_FAMILIARS = [
-    { name: "Mooncat", fur: "#51466f", cloak: "#302945", glow: "#aa95db", eyes: "#e1caff" },
-    { name: "Embercat", fur: "#914a43", cloak: "#512d35", glow: "#e58b71", eyes: "#ffe2a0" },
-    { name: "Starseer", fur: "#927547", cloak: "#514632", glow: "#d8b76e", eyes: "#a9f0e2" },
-    { name: "Mossmage", fur: "#43735d", cloak: "#29483e", glow: "#81bd8e", eyes: "#e9df99" },
+    { name: "Mooncat", fur: "#9785bf", cloak: "#5c4b82", glow: "#d7bbff", eyes: "#fff0a8" },
+    { name: "Embercat", fur: "#e28c83", cloak: "#b45d75", glow: "#ffb5a5", eyes: "#fff2a6" },
+    { name: "Starseer", fur: "#d9ad68", cloak: "#bd806e", glow: "#ffd98e", eyes: "#b8ffeb" },
+    { name: "Mossmage", fur: "#7fb794", cloak: "#4b8c76", glow: "#a6edb8", eyes: "#fff0a6" },
   ];
   const RANKS = [
     [2, "2"], [3, "3"], [4, "4"], [5, "5"], [6, "6"], [7, "7"], [8, "8"],
@@ -54,27 +54,41 @@
     else if (card.rank === 14) regalia = `<path d="m24 3 2 4 4 .5-3 3 .7 4.5-3.7-2.2-3.7 2.2.7-4.5-3-3 4-.5Z" fill="${familiar.glow}" stroke="#fff0bd" stroke-width=".7"/>`;
 
     return `<svg class="card-cat" viewBox="0 0 48 52" aria-hidden="true">
-      <circle class="cat-halo" cx="24" cy="27" r="18" fill="none" stroke="${familiar.glow}" stroke-width=".8" opacity=".55"/>
-      <path d="M9 35 5 32m34 3 4-3M11 15l-2-3m28 3 2-3" stroke="${familiar.glow}" stroke-width="1" opacity=".8"/>
-      <path d="M9 50c2-9 7-14 15-14s13 5 15 14Z" fill="${familiar.cloak}" stroke="${familiar.glow}" stroke-width="1"/>
-      <path d="M18 39 24 46l6-7" fill="none" stroke="${familiar.glow}" stroke-width="1"/>
-      <path d="M11 20 8 8l12 7q4-3 8 0l12-7-3 13q3 10-5 16-8 6-16 0-8-6-5-17Z" fill="${familiar.fur}" stroke="#f0ddbd" stroke-width="1"/>
-      <path d="m12 16-1-5 6 4m19 1 1-5-6 4" fill="none" stroke="${familiar.glow}" stroke-width="1.2" opacity=".8"/>
+      <circle class="cat-halo" cx="24" cy="27" r="19" fill="none" stroke="${familiar.glow}" stroke-width="1.2" opacity=".68"/>
+      <path d="m8 31-3-2m35 2 3-2M11 16l-2-3m28 3 2-3" stroke="${familiar.glow}" stroke-width="1.2" stroke-linecap="round" opacity=".9"/>
+      <path d="M8 50c1-8 7-13 16-13s15 5 16 13Z" fill="${familiar.cloak}" stroke="${familiar.glow}" stroke-width="1.2"/>
+      <path d="M17 40q3-3 6 0l1 3 1-3q3-3 6 0l-2 5q-5 3-10 0Z" fill="#ffe4ea" stroke="#fff7ed" stroke-width=".65"/>
+      <path d="M11 20 9 9q-.4-3 2-2l9 8q4-2 8 0l9-8q2-1 2 2l-2 12q3 9-4 15-5 5-10 5t-10-5q-7-6-4-16Z" fill="${familiar.fur}" stroke="#fff1df" stroke-width="1.15" stroke-linejoin="round"/>
+      <path d="m13 13 5 4m17-4-5 4" fill="none" stroke="${familiar.glow}" stroke-width="1.4" stroke-linecap="round"/>
       ${regalia}
-      <path d="M15 24q4-4 8 0-4 5-8 0Zm10 0q4-4 8 0-4 5-8 0Z" fill="${familiar.eyes}"/>
-      <circle cx="19" cy="24" r="1.1" fill="#282333"/><circle cx="29" cy="24" r="1.1" fill="#282333"/>
-      <path d="m22 29 2-1.5 2 1.5-2 1.7Zm2 2v1.5m0-1.5q-2.5 3-5 0m5 0q2.5 3 5 0" fill="none" stroke="#f4dfcb" stroke-width=".85" stroke-linecap="round"/>
-      <circle cx="24" cy="44" r="2.4" fill="${familiar.glow}" stroke="#f4dfbd" stroke-width=".7"/>
-      <text x="24" y="46" text-anchor="middle" font-size="4" fill="#fff4d6">${SUITS[card.suit].symbol}</text>
+      <ellipse cx="15" cy="29" rx="3.1" ry="1.8" fill="#ffb5c8" opacity=".75"/>
+      <ellipse cx="33" cy="29" rx="3.1" ry="1.8" fill="#ffb5c8" opacity=".75"/>
+      <ellipse cx="18.5" cy="25" rx="4" ry="4.8" fill="${familiar.eyes}"/>
+      <ellipse cx="29.5" cy="25" rx="4" ry="4.8" fill="${familiar.eyes}"/>
+      <ellipse cx="19" cy="26" rx="2.1" ry="2.8" fill="#463954"/>
+      <ellipse cx="29" cy="26" rx="2.1" ry="2.8" fill="#463954"/>
+      <circle class="cat-eye-glint" cx="18" cy="23.5" r="1.3" fill="#fff"/>
+      <circle class="cat-eye-glint" cx="28" cy="23.5" r="1.3" fill="#fff"/>
+      <path d="M21.5 31q2.5-2.3 5 0l-2.5 2.1Zm2.5 2v1.4m0-1.4q-2.5 2.8-4.5.2m4.5-.2q2.5 2.8 4.5.2" fill="#fff0e8" stroke="#765267" stroke-width=".7" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="24" cy="44" r="2.8" fill="${familiar.glow}" stroke="#fff2db" stroke-width=".8"/>
+      <text x="24" y="45.5" text-anchor="middle" font-size="4.2" fill="#fff">${SUITS[card.suit].symbol}</text>
+      <path d="m7 22 .7 1.3 1.4.2-1 .9.2 1.4-.3-.2m33-3.6.7 1.3 1.4.2-1 .9.2 1.4-.3-.2" fill="${familiar.glow}"/>
     </svg>`;
   }
 
   function catBackIllustration() {
     return `<svg class="card-back-cat" viewBox="0 0 48 52" aria-hidden="true">
       <circle cx="24" cy="26" r="18" fill="none" stroke="#c6a9ec" stroke-width="1" opacity=".65"/>
-      <path d="M11 21 9 9l11 7q4-3 8 0l11-7-2 13q3 9-5 15-8 6-16 0-8-6-5-16Z" fill="#71628d" stroke="#e2cefb" stroke-width="1.2"/>
-      <path d="M16 25q3-3 6 0-3 4-6 0Zm10 0q3-3 6 0-3 4-6 0Z" fill="#f3d996"/>
-      <path d="m22 30 2-1.5 2 1.5-2 1.5Zm2 2v2m0-2q-2 2.5-4 0m4 0q2 2.5 4 0" fill="none" stroke="#f4e6d2" stroke-width="1" stroke-linecap="round"/>
+      <path d="M11 20 9 9q-.4-3 2-2l9 8q4-2 8 0l9-8q2-1 2 2l-2 12q3 9-4 15-5 5-10 5t-10-5q-7-6-4-16Z" fill="#9b88c4" stroke="#f1ddff" stroke-width="1.2" stroke-linejoin="round"/>
+      <ellipse cx="16" cy="29" rx="3.2" ry="1.8" fill="#ffaec4"/>
+      <ellipse cx="32" cy="29" rx="3.2" ry="1.8" fill="#ffaec4"/>
+      <ellipse cx="18.5" cy="25" rx="4" ry="4.8" fill="#fff0a8"/>
+      <ellipse cx="29.5" cy="25" rx="4" ry="4.8" fill="#fff0a8"/>
+      <ellipse cx="19" cy="26" rx="2.1" ry="2.8" fill="#463954"/>
+      <ellipse cx="29" cy="26" rx="2.1" ry="2.8" fill="#463954"/>
+      <circle cx="18" cy="23.5" r="1.3" fill="#fff"/>
+      <circle cx="28" cy="23.5" r="1.3" fill="#fff"/>
+      <path d="M21.5 31q2.5-2.3 5 0l-2.5 2.1Zm2.5 2v1.4m0-1.4q-2.5 2.8-4.5.2m4.5-.2q2.5 2.8 4.5.2" fill="#fff0e8" stroke="#765267" stroke-width=".7" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="m24 3 1.5 3 3 .5-2.3 2.2.5 3.2-2.7-1.5-2.7 1.5.5-3.2-2.3-2.2 3-.5Z" fill="#e1c878"/>
     </svg>`;
   }

@@ -134,13 +134,14 @@ button:focus-visible, a:focus-visible { outline: 2px solid #e5c986; outline-offs
 .player-identity b i { color: #d7bd80; font-style: normal; }
 .table-emblem { position: absolute; z-index: 0; top: 50%; left: 50%; display: grid; width: 26px; height: 26px; place-items: center; transform: translate(-50%,-50%); border: 1px solid rgba(207,185,132,.18); border-radius: 50%; color: rgba(214,191,140,.42); font-size: 10px; }
 .table-emblem i { position: absolute; transform: rotate(45deg); color: rgba(214,191,140,.35); font-size: 20px; font-style: normal; }
-.playing-card { position: relative; width: 55px; height: 81px; flex: 0 0 55px; border: 1px solid #d5cbb4; border-radius: 5px; color: #302a2b; background: linear-gradient(135deg,#f3ebdc,#dfd2b9); box-shadow: 0 5px 11px rgba(0,0,0,.27); animation: deal-in .32s ease both; user-select: none; }
+.playing-card { position: relative; width: 55px; height: 81px; flex: 0 0 55px; border: 1px solid #e6cce1; border-radius: 7px; color: #69505e; background: linear-gradient(145deg,#fff9f1,#f3e8fa 65%,#fce9ed); box-shadow: 0 5px 11px rgba(0,0,0,.27); animation: deal-in .32s ease both; user-select: none; }
 .playing-card.red { color: #a6484b; }
 .playing-card .card-corner { position: absolute; top: 5px; left: 6px; display: grid; justify-items: center; font: 600 13px/.9 'Cormorant Garamond', serif; }
 .playing-card .card-corner small { margin-top: 3px; font-size: 9px; }
 .playing-card .card-center { position: absolute; inset: 0; display: grid; place-items: center; }
 .playing-card .card-cat { width: 44px; height: 48px; max-width: calc(100% - 4px); max-height: calc(100% - 18px); overflow: visible; filter: drop-shadow(0 1px 3px rgba(36,24,44,.3)); }
 .playing-card .cat-halo { transform-box: fill-box; transform-origin: center; animation: halo-pulse 2.8s ease-in-out infinite alternate; }
+.playing-card .cat-eye-glint { transform-box: fill-box; transform-origin: center; animation: sparkle 1.8s ease-in-out infinite alternate; }
 .playing-card.back .card-back-cat { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; padding: 14px 8px; }
 .playing-card .card-back-cat { filter: drop-shadow(0 0 4px rgba(190,157,227,.35)); }
 .playing-card .card-bottom { position: absolute; right: 6px; bottom: 4px; transform: rotate(180deg); font: 12px 'Cormorant Garamond', serif; }
@@ -175,6 +176,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #e5c986; outline-offs
 @keyframes deal-in { from { opacity: 0; transform: translateY(-8px) scale(.96); } to { opacity: 1; } }
 @keyframes win-glow { from { filter: drop-shadow(0 0 3px rgba(240,209,135,.25)); } to { filter: drop-shadow(0 0 14px rgba(240,209,135,.68)); } }
 @keyframes halo-pulse { from { opacity: .62; } to { opacity: 1; } }
+@keyframes sparkle { from { transform: scale(.75); opacity: .7; } to { transform: scale(1.2); opacity: 1; } }
 
 @media (min-width: 1500px) {
   .game-shell { padding-right: 64px; padding-left: 64px; }
