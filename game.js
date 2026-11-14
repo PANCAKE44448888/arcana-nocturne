@@ -7,6 +7,12 @@
     { name: "diamonds", symbol: "♦", color: "red" },
     { name: "clubs", symbol: "♣", color: "black" },
   ];
+  const SUIT_FAMILIARS = [
+    { name: "Mooncat", fur: "#51466f", cloak: "#302945", glow: "#aa95db", eyes: "#e1caff" },
+    { name: "Embercat", fur: "#914a43", cloak: "#512d35", glow: "#e58b71", eyes: "#ffe2a0" },
+    { name: "Starseer", fur: "#927547", cloak: "#514632", glow: "#d8b76e", eyes: "#a9f0e2" },
+    { name: "Mossmage", fur: "#43735d", cloak: "#29483e", glow: "#81bd8e", eyes: "#e9df99" },
+  ];
   const RANKS = [
     [2, "2"], [3, "3"], [4, "4"], [5, "5"], [6, "6"], [7, "7"], [8, "8"],
     [9, "9"], [10, "10"], [11, "J"], [12, "Q"], [13, "K"], [14, "A"],
@@ -39,15 +45,50 @@
   function formatChips(amount) { return Math.max(0, amount).toLocaleString("en-US"); }
   function cardLabel(card) { return `${card.label} of ${SUITS[card.suit].name}`; }
 
+  function catIllustration(card) {
+    const familiar = SUIT_FAMILIARS[card.suit];
+    let regalia = "";
+    if (card.rank === 11) regalia = `<path d="M15 15 19 5l6 8 7-8 2 11Z" fill="${familiar.glow}" stroke="#f4dfad" stroke-width=".8"/><circle cx="25" cy="12" r="1.5" fill="#fff0bd"/>`;
+    else if (card.rank === 12) regalia = `<path d="M18 12a7 7 0 0 1 10-7 7 7 0 1 0 7 9 8 8 0 0 1-17-2Z" fill="${familiar.glow}" stroke="#f4dfad" stroke-width=".7"/>`;
+    else if (card.rank === 13) regalia = `<path d="m15 15 2-7 5 5 3-8 4 8 5-5 1 8Z" fill="${familiar.glow}" stroke="#f4dfad" stroke-width=".8"/><circle cx="25" cy="11" r="1.4" fill="#fff0bd"/>`;
+    else if (card.rank === 14) regalia = `<path d="m24 3 2 4 4 .5-3 3 .7 4.5-3.7-2.2-3.7 2.2.7-4.5-3-3 4-.5Z" fill="${familiar.glow}" stroke="#fff0bd" stroke-width=".7"/>`;
+
+    return `<svg class="card-cat" viewBox="0 0 48 52" aria-hidden="true">
+      <circle class="cat-halo" cx="24" cy="27" r="18" fill="none" stroke="${familiar.glow}" stroke-width=".8" opacity=".55"/>
+      <path d="M9 35 5 32m34 3 4-3M11 15l-2-3m28 3 2-3" stroke="${familiar.glow}" stroke-width="1" opacity=".8"/>
+      <path d="M9 50c2-9 7-14 15-14s13 5 15 14Z" fill="${familiar.cloak}" stroke="${familiar.glow}" stroke-width="1"/>
+      <path d="M18 39 24 46l6-7" fill="none" stroke="${familiar.glow}" stroke-width="1"/>
+      <path d="M11 20 8 8l12 7q4-3 8 0l12-7-3 13q3 10-5 16-8 6-16 0-8-6-5-17Z" fill="${familiar.fur}" stroke="#f0ddbd" stroke-width="1"/>
+      <path d="m12 16-1-5 6 4m19 1 1-5-6 4" fill="none" stroke="${familiar.glow}" stroke-width="1.2" opacity=".8"/>
+      ${regalia}
+      <path d="M15 24q4-4 8 0-4 5-8 0Zm10 0q4-4 8 0-4 5-8 0Z" fill="${familiar.eyes}"/>
+      <circle cx="19" cy="24" r="1.1" fill="#282333"/><circle cx="29" cy="24" r="1.1" fill="#282333"/>
+      <path d="m22 29 2-1.5 2 1.5-2 1.7Zm2 2v1.5m0-1.5q-2.5 3-5 0m5 0q2.5 3 5 0" fill="none" stroke="#f4dfcb" stroke-width=".85" stroke-linecap="round"/>
+      <circle cx="24" cy="44" r="2.4" fill="${familiar.glow}" stroke="#f4dfbd" stroke-width=".7"/>
+      <text x="24" y="46" text-anchor="middle" font-size="4" fill="#fff4d6">${SUITS[card.suit].symbol}</text>
+    </svg>`;
+  }
+
+  function catBackIllustration() {
+    return `<svg class="card-back-cat" viewBox="0 0 48 52" aria-hidden="true">
+      <circle cx="24" cy="26" r="18" fill="none" stroke="#c6a9ec" stroke-width="1" opacity=".65"/>
+      <path d="M11 21 9 9l11 7q4-3 8 0l11-7-2 13q3 9-5 15-8 6-16 0-8-6-5-16Z" fill="#71628d" stroke="#e2cefb" stroke-width="1.2"/>
+      <path d="M16 25q3-3 6 0-3 4-6 0Zm10 0q3-3 6 0-3 4-6 0Z" fill="#f3d996"/>
+      <path d="m22 30 2-1.5 2 1.5-2 1.5Zm2 2v2m0-2q-2 2.5-4 0m4 0q2 2.5 4 0" fill="none" stroke="#f4e6d2" stroke-width="1" stroke-linecap="round"/>
+      <path d="m24 3 1.5 3 3 .5-2.3 2.2.5 3.2-2.7-1.5-2.7 1.5.5-3.2-2.3-2.2 3-.5Z" fill="#e1c878"/>
+    </svg>`;
+  }
+
   function renderCard(card, options = {}) {
     const element = document.createElement("div");
     const revealed = options.revealed && card;
     element.className = `playing-card${revealed && SUITS[card.suit].color === "red" ? " red" : ""}${options.back ? " back" : ""}${options.selected ? " selected" : ""}${options.selectable ? " selectable" : ""}${revealed ? " revealed" : ""}${options.winner ? " winner-glow" : ""}`;
     if (options.back) {
-      element.setAttribute("aria-label", "Face-down card");
+      element.innerHTML = catBackIllustration();
+      element.setAttribute("aria-label", "Face-down card with a magical cat");
     } else {
-      element.innerHTML = `<span class="card-corner">${card.label}<small>${SUITS[card.suit].symbol}</small></span><span class="card-center" aria-hidden="true">${SUITS[card.suit].symbol}</span><span class="card-bottom" aria-hidden="true">${SUITS[card.suit].symbol}</span>`;
-      element.setAttribute("aria-label", cardLabel(card));
+      element.innerHTML = `<span class="card-corner">${card.label}<small>${SUITS[card.suit].symbol}</small></span><span class="card-center" aria-hidden="true">${catIllustration(card)}</span><span class="card-bottom" aria-hidden="true">${SUITS[card.suit].symbol}</span>`;
+      element.setAttribute("aria-label", `${cardLabel(card)}, ${SUIT_FAMILIARS[card.suit].name} familiar`);
       if (options.selectable) {
         element.setAttribute("role", "button");
         element.setAttribute("tabindex", "0");
