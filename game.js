@@ -412,6 +412,5 @@
   $("fold-button").addEventListener("click", () => playerAction("fold"));
   $("raise-button").addEventListener("click", () => playerAction("raise"));
   document.querySelectorAll(".spell-card").forEach((button) => button.addEventListener("click", () => castSpell(button.dataset.spell)));
-  renderCards();
-  updateControls();
+  startHand();
 })();
