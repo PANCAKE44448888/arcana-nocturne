@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#100e18" />
+    <meta
+      name="description"
+      content="A high-stakes poker duel in a candlelit hall of magic."
+    />
+    <title>Arcana Nocturne — The Velvet Hand</title>
+    <link rel="stylesheet" href="style.css?v=cute-cards" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <a class="wordmark" href="#" aria-label="Arcana Nocturne home">
+          <span class="wordmark-mark" aria-hidden="true">✳</span>
+          <span>ARCANA <i>NOCTURNE</i></span>
+        </a>
+        <div class="tournament-label"><span></span> <b id="act-name">THE VELVET HAND</b> <span class="topbar-divider">/</span> <b id="act-number">ACT I</b></div>
+        <div class="sound-button"><span aria-hidden="true">♜</span><span>SOLO DUEL</span></div>
+      </header>
+
+      <div class="game-layout">
+        <aside class="left-rail">
+          <div class="rail-section tournament-card">
+            <div class="eyebrow">THE MIDNIGHT CIRCUIT</div>
+            <div class="tournament-progress">
+              <span class="progress-number" id="wins-count">00</span>
+              <span class="progress-slash">/</span>
+              <span class="progress-total">03</span>
+              <span class="progress-copy">VICTORIES<br />TO THE NEXT GATE</span>
+            </div>
+            <div class="progress-track"><span id="progress-fill"></span></div>
+            <div class="tournament-reward"><span aria-hidden="true">✧</span> NEXT: <b id="next-gate">THE MOONLIT MASQUERADE</b></div>
+          </div>
+
+          <div class="rail-section spell-section">
+            <div class="section-heading">
+              <span class="eyebrow">ARCANA</span>
+              <span class="mana-counter"><span aria-hidden="true">✦</span> <b id="mana-count">3</b> <small>/ 5</small></span>
+            </div>
+            <p class="rail-intro">Spend mana to bend the odds. Choose a card before casting a targeted spell.</p>
+            <button class="spell-card" id="spell-oracle" data-spell="oracle" type="button">
+              <span class="spell-icon oracle-icon" aria-hidden="true">◉</span>
+              <span class="spell-copy"><b>Oracle's Eye</b><small>Reveal a rival card</small></span>
+              <span class="spell-cost">✦ 2</span>
+            </button>
+            <button class="spell-card" id="spell-cinder" data-spell="cinder" type="button">
+              <span class="spell-icon cinder-icon" aria-hidden="true">♨</span>
+              <span class="spell-copy"><b>Cinder Mark</b><small>Burn 35 rival chips</small></span>
+              <span class="spell-cost">✦ 2</span>
+            </button>
+            <button class="spell-card" id="spell-runeshift" data-spell="runeshift" type="button">
+              <span class="spell-icon shift-icon" aria-hidden="true">↻</span>
+              <span class="spell-copy"><b>Runeshift</b><small>Change a card's suit</small></span>
+              <span class="spell-cost">✦ 2</span>
+            </button>
+            <button class="spell-card" id="spell-lucky" data-spell="lucky" type="button">
+              <span class="spell-icon lucky-icon" aria-hidden="true">☄</span>
+              <span class="spell-copy"><b>Lucky Draw</b><small>Replace a chosen card</small></span>
+              <span class="spell-cost">✦ 1</span>
+            </button>
+            <div class="spell-hint" id="spell-hint" aria-live="polite">Select a spell to weave it into the hand.</div>
+          </div>
+
+          <div class="rail-section journal-section">
+            <div class="eyebrow">FIELD NOTES <span class="note-count">01</span></div>
+            <div class="journal-entry">
+              <span class="journal-glyph" aria-hidden="true">☽</span>
+              <p><b>The Veiled One</b><br />She plays the player, not the cards. Watch the pauses.</p>
+            </div>
+            <div class="journal-entry">
+              <span class="journal-glyph gold" aria-hidden="true">♜</span>
+              <p><b>Arcane hands</b><br />A five-card hand can carry a spell-born name.</p>
+            </div>
+          </div>
+        </aside>
+
+        <section class="arena" aria-label="Poker table">
+          <div class="arena-topline">
+            <div class="ante-label"><span class="live-dot"></span> HIGH STAKES <span class="ante-divider">·</span> ANTE 20</div>
+            <div class="hand-number">HAND <span id="hand-number">01</span></div>
+          </div>
+
+          <div class="table-wrap">
+            <div class="table-halo"></div>
+            <div class="table-rim"></div>
+            <div class="table-felt">
+              <div class="felt-ornament ornament-left" aria-hidden="true">✧</div>
+              <div class="felt-ornament ornament-right" aria-hidden="true">✧</div>
+              <div class="opponent-zone">
+                <div class="opponent-info">
+                  <div class="opponent-portrait" aria-hidden="true"><span>☽</span><i></i></div>
+                  <div class="opponent-name"><span class="eyebrow">YOUR OPPONENT</span><b>LYSANDRA <i>THE VEILED</i></b><small id="opponent-mood">“The cards are only half the story.”</small></div>
+                  <div class="opponent-stack"><small>HER STACK</small><b id="opponent-chips">1,000</b><span>◆ ◆ ◆</span></div>
+                </div>
+                <div class="opponent-cards" id="opponent-cards" aria-label="Opponent's cards"></div>
+              </div>
+
+              <div class="table-center">
+                <div class="pot-display"><span class="pot-label">THE POT</span><div><span class="pot-glyph">✧</span><b id="pot-count">0</b><span class="pot-units">CHIPS</span></div></div>
+                <div class="community-cards" id="community-cards" aria-label="Community cards"></div>
+                <div class="round-label" id="round-label">THE TABLE AWAITS</div>
+              </div>
+
+              <div class="player-zone">
+                <div class="player-cards" id="player-cards" aria-label="Your cards"></div>
+                <div class="player-info">
+                  <div class="player-identity">
+                    <div class="player-crest" aria-hidden="true"><span>♙</span><i>✦</i></div>
+                    <div><span class="eyebrow">THE APPRENTICE</span><b>YOU <i>· THE STAR-TOUCHED</i></b></div>
+                  </div>
+                  <div class="player-stack"><small>YOUR STACK</small><b id="player-chips">1,000</b><span>◆ ◆ ◆</span></div>
+                </div>
+              </div>
+              <div class="table-emblem" aria-hidden="true"><span>✦</span><i>✧</i></div>
+            </div>
+          </div>
+
+          <div class="action-area">
+            <div class="duel-feed" id="duel-feed" aria-live="polite">
+              <span class="feed-mark" aria-hidden="true">✳</span>
+              <span id="feed-message">The velvet table is yours. Take your seat, apprentice.</span>
+            </div>
+            <div class="action-row">
+              <button class="action-button secondary" id="fold-button" type="button" disabled><span>FOLD</span><small>Leave the hand</small></button>
+              <button class="action-button primary" id="check-button" type="button"><span id="check-label">DEAL THE HAND</span><small id="check-detail">The night is young</small></button>
+              <button class="action-button secondary raise-button" id="raise-button" type="button" disabled><span>RAISE <i>40</i></span><small>Press the advantage</small></button>
+            </div>
+            <div class="table-footer"><span>✧ TRUST YOUR INSTINCTS. QUESTION YOUR LUCK. ✧</span><span>NO. <b id="footer-hand">001</b></span></div>
+          </div>
+        </section>
+      </div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </main>
+    <script src="game.js?v=opening-hand"></script>
+  </body>
+</html>
