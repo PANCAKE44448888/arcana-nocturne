@@ -53,7 +53,7 @@
     else if (card.rank === 13) regalia = `<path d="m15 15 2-7 5 5 3-8 4 8 5-5 1 8Z" fill="${familiar.glow}" stroke="#f4dfad" stroke-width=".8"/><circle cx="25" cy="11" r="1.4" fill="#fff0bd"/>`;
     else if (card.rank === 14) regalia = `<path d="m24 3 2 4 4 .5-3 3 .7 4.5-3.7-2.2-3.7 2.2.7-4.5-3-3 4-.5Z" fill="${familiar.glow}" stroke="#fff0bd" stroke-width=".7"/>`;
 
-    return `<svg class="card-cat" viewBox="0 0 48 52" aria-hidden="true">
+    return `<svg class="card-cat" viewBox="0 0 48 56" aria-hidden="true">
       <circle class="cat-halo" cx="24" cy="27" r="19" fill="none" stroke="${familiar.glow}" stroke-width="1.2" opacity=".68"/>
       <path d="m8 31-3-2m35 2 3-2M11 16l-2-3m28 3 2-3" stroke="${familiar.glow}" stroke-width="1.2" stroke-linecap="round" opacity=".9"/>
       <path d="M8 50c1-8 7-13 16-13s15 5 16 13Z" fill="${familiar.cloak}" stroke="${familiar.glow}" stroke-width="1.2"/>
@@ -73,6 +73,7 @@
       <circle cx="24" cy="44" r="2.8" fill="${familiar.glow}" stroke="#fff2db" stroke-width=".8"/>
       <text x="24" y="45.5" text-anchor="middle" font-size="4.2" fill="#fff">${SUITS[card.suit].symbol}</text>
       <path d="m7 22 .7 1.3 1.4.2-1 .9.2 1.4-.3-.2m33-3.6.7 1.3 1.4.2-1 .9.2 1.4-.3-.2" fill="${familiar.glow}"/>
+      <text x="24" y="54" text-anchor="middle" font-size="3.1" font-weight="800" letter-spacing=".35" fill="${familiar.cloak}">${familiar.name.toUpperCase()}</text>
     </svg>`;
   }
 
@@ -96,7 +97,7 @@
   function renderCard(card, options = {}) {
     const element = document.createElement("div");
     const revealed = options.revealed && card;
-    element.className = `playing-card${revealed && SUITS[card.suit].color === "red" ? " red" : ""}${options.back ? " back" : ""}${options.selected ? " selected" : ""}${options.selectable ? " selectable" : ""}${revealed ? " revealed" : ""}${options.winner ? " winner-glow" : ""}`;
+    element.className = `playing-card${!options.back && card ? ` suit-${card.suit}` : ""}${revealed && SUITS[card.suit].color === "red" ? " red" : ""}${options.back ? " back" : ""}${options.selected ? " selected" : ""}${options.selectable ? " selectable" : ""}${revealed ? " revealed" : ""}${options.winner ? " winner-glow" : ""}`;
     if (options.back) {
       element.innerHTML = catBackIllustration();
       element.setAttribute("aria-label", "Face-down card with a magical cat");

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&display=swap');
 
 :root {
   color-scheme: dark;
@@ -134,23 +134,28 @@ button:focus-visible, a:focus-visible { outline: 2px solid #e5c986; outline-offs
 .player-identity b i { color: #d7bd80; font-style: normal; }
 .table-emblem { position: absolute; z-index: 0; top: 50%; left: 50%; display: grid; width: 26px; height: 26px; place-items: center; transform: translate(-50%,-50%); border: 1px solid rgba(207,185,132,.18); border-radius: 50%; color: rgba(214,191,140,.42); font-size: 10px; }
 .table-emblem i { position: absolute; transform: rotate(45deg); color: rgba(214,191,140,.35); font-size: 20px; font-style: normal; }
-.playing-card { position: relative; width: 55px; height: 81px; flex: 0 0 55px; border: 1px solid #e6cce1; border-radius: 7px; color: #69505e; background: linear-gradient(145deg,#fff9f1,#f3e8fa 65%,#fce9ed); box-shadow: 0 5px 11px rgba(0,0,0,.27); animation: deal-in .32s ease both; user-select: none; }
-.playing-card.red { color: #a6484b; }
-.playing-card .card-corner { position: absolute; top: 5px; left: 6px; display: grid; justify-items: center; font: 600 13px/.9 'Cormorant Garamond', serif; }
-.playing-card .card-corner small { margin-top: 3px; font-size: 9px; }
+.playing-card { --card-accent: #d7bbff; --card-ink: #695581; position: relative; width: 60px; height: 90px; flex: 0 0 60px; overflow: hidden; border: 1px solid #f0cfe1; border-radius: 11px; color: var(--card-ink); background: linear-gradient(145deg,#fffaf3,#f3e9ff 60%,#ffeaf0); box-shadow: 0 6px 13px rgba(37,25,43,.2), inset 0 0 0 2px rgba(255,255,255,.7); animation: deal-in .32s ease both; user-select: none; }
+.playing-card.suit-0 { --card-accent: #c7a9f3; --card-ink: #715c91; background: radial-gradient(circle at 50% 49%, #f7efff, transparent 56%), linear-gradient(145deg,#fffaf3,#f0e9ff 65%,#e9efff); }
+.playing-card.suit-1 { --card-accent: #ff9eae; --card-ink: #995568; background: radial-gradient(circle at 50% 49%, #fff1f0, transparent 56%), linear-gradient(145deg,#fffaf3,#ffeaf0 65%,#fff0dc); }
+.playing-card.suit-2 { --card-accent: #f0c56f; --card-ink: #8d7046; background: radial-gradient(circle at 50% 49%, #fff8df, transparent 56%), linear-gradient(145deg,#fffaf3,#fff3db 65%,#fff0e8); }
+.playing-card.suit-3 { --card-accent: #8bd1a2; --card-ink: #537c65; background: radial-gradient(circle at 50% 49%, #effff2, transparent 56%), linear-gradient(145deg,#fffaf3,#eaf8ed 65%,#e8f4ff); }
+.playing-card::before { position: absolute; z-index: 1; inset: 4px; border: 1px solid color-mix(in srgb, var(--card-accent), transparent 58%); border-radius: 7px; content: ""; pointer-events: none; }
+.playing-card.red { color: #a64864; }
+.playing-card .card-corner { position: absolute; z-index: 2; top: 7px; left: 7px; display: grid; justify-items: center; font: 900 12px/.95 'Nunito', sans-serif; }
+.playing-card .card-corner small { margin-top: 2px; color: var(--card-accent); font-size: 9px; }
 .playing-card .card-center { position: absolute; inset: 0; display: grid; place-items: center; }
-.playing-card .card-cat { width: 44px; height: 48px; max-width: calc(100% - 4px); max-height: calc(100% - 18px); overflow: visible; filter: drop-shadow(0 1px 3px rgba(36,24,44,.3)); }
+.playing-card .card-cat { position: relative; top: 3px; width: 50px; height: 58px; max-width: calc(100% - 4px); max-height: calc(100% - 16px); overflow: visible; filter: drop-shadow(0 2px 3px rgba(113,81,120,.2)); }
 .playing-card .cat-halo { transform-box: fill-box; transform-origin: center; animation: halo-pulse 2.8s ease-in-out infinite alternate; }
 .playing-card .cat-eye-glint { transform-box: fill-box; transform-origin: center; animation: sparkle 1.8s ease-in-out infinite alternate; }
 .playing-card.back .card-back-cat { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; padding: 14px 8px; }
 .playing-card .card-back-cat { filter: drop-shadow(0 0 4px rgba(190,157,227,.35)); }
 .playing-card .card-bottom { position: absolute; right: 6px; bottom: 4px; transform: rotate(180deg); font: 12px 'Cormorant Garamond', serif; }
-.playing-card.back { overflow: hidden; border-color: rgba(222,194,139,.66); background:
-  radial-gradient(circle at center, rgba(224,195,132,.18) 0 2px, transparent 3px),
-  repeating-linear-gradient(45deg, transparent 0 5px, rgba(216,188,130,.1) 5px 6px),
-  linear-gradient(135deg,#30253d,#191a29 52%,#34233e); }
-.playing-card.back::before, .playing-card.back::after { position: absolute; inset: 5px; border: 1px solid rgba(221,194,135,.52); border-radius: 3px; content: ""; }
-.playing-card.back::after { inset: 13px; transform: rotate(45deg); border-color: rgba(221,194,135,.33); }
+.playing-card.back { overflow: hidden; border-color: #e8c4ed; background:
+  radial-gradient(circle at 50% 48%, rgba(251,218,237,.7) 0 28%, transparent 29%),
+  repeating-linear-gradient(45deg, transparent 0 6px, rgba(198,166,224,.13) 6px 7px),
+  linear-gradient(135deg,#fff7f2,#eee4ff 52%,#ffeaf1); }
+.playing-card.back::before, .playing-card.back::after { position: absolute; z-index: 2; inset: 5px; border: 1px solid rgba(169,132,195,.65); border-radius: 7px; content: ""; pointer-events: none; }
+.playing-card.back::after { inset: 12px; transform: rotate(45deg); border-color: rgba(206,165,216,.45); }
 .playing-card.selected { transform: translateY(-9px); border-color: #e3c67d; box-shadow: 0 0 0 2px rgba(227,198,125,.32), 0 9px 20px rgba(0,0,0,.4); }
 .playing-card.selectable { cursor: pointer; transition: transform .18s, box-shadow .18s; }
 .playing-card.selectable:hover { transform: translateY(-4px); }
@@ -173,7 +178,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #e5c986; outline-offs
 .toast { position: fixed; z-index: 10; right: 25px; bottom: 22px; max-width: 300px; border: 1px solid rgba(211,182,117,.35); padding: 12px 16px; background: #1d1922; color: #e1d4b8; font: 13px 'Cormorant Garamond', serif; opacity: 0; transform: translateY(9px); pointer-events: none; transition: opacity .2s, transform .2s; }
 .toast.visible { opacity: 1; transform: translateY(0); }
 .winner-glow { animation: win-glow 1.5s ease-in-out infinite alternate; }
-@keyframes deal-in { from { opacity: 0; transform: translateY(-8px) scale(.96); } to { opacity: 1; } }
+@keyframes deal-in { from { transform: translateY(-8px) scale(.96); } to { transform: translateY(0) scale(1); } }
 @keyframes win-glow { from { filter: drop-shadow(0 0 3px rgba(240,209,135,.25)); } to { filter: drop-shadow(0 0 14px rgba(240,209,135,.68)); } }
 @keyframes halo-pulse { from { opacity: .62; } to { opacity: 1; } }
 @keyframes sparkle { from { transform: scale(.75); opacity: .7; } to { transform: scale(1.2); opacity: 1; } }
@@ -240,7 +245,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #e5c986; outline-offs
   .pot-display { margin-bottom: 5px; }
   .pot-display b { font-size: 23px; }
   .community-cards { min-height: 70px; gap: 3px; }
-  .playing-card { width: clamp(36px, 9.2vw, 49px); height: clamp(56px, 13.3vw, 73px); flex-basis: clamp(36px, 9.2vw, 49px); }
+  .playing-card { width: clamp(36px, 9.2vw, 49px); height: clamp(56px, 13.3vw, 73px); flex-basis: clamp(36px, 9.2vw, 49px); border-radius: 8px; }
   .playing-card .card-corner { top: 4px; left: 4px; font-size: 11px; }
   .playing-card .card-corner small { margin-top: 2px; font-size: 7px; }
   .playing-card .card-cat { width: 40px; height: 45px; }
